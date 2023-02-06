@@ -11,7 +11,7 @@ class Labyrinth:
         self.__rows, self.__columns = rows, columns
         self.__key = 1
         self.__map_lab = self.CreateMap()
-        self._printMap()
+        # self._printMap()
 
     @property
     def Rows(self) -> int:
@@ -45,9 +45,18 @@ class Labyrinth:
             line_elements = line.Elements
 
         Line.Line.renewClassLine()
-        map_lab[- 1].addEndLine()
+        map_lab[-1].addEndLine()
 
         return np.array(map_lab)
+
+    def serializeToDict(self) -> dict:
+        labyrinth = dict()
+
+        """
+        Need to add serialization method via dictionary
+        """
+
+        return labyrinth
 
     def _printMap(self) -> None:
         map_lab = self.__map_lab
