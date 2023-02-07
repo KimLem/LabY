@@ -49,14 +49,21 @@ class Labyrinth:
 
         return np.array(map_lab)
 
-    def serializeToDict(self) -> dict:
-        labyrinth = dict()
+    def serialize(self) -> np.ndarray:
 
-        """
-        Need to add serialization method via dictionary
-        """
+        right_walls = np.array([])
+        bot_walls = np.array([])
 
-        return labyrinth
+        for line in self.__map_lab:
+
+            for box in line:
+                right_walls = np.append(right_walls, int(box.Right))
+                bot_walls = np.append(bot_walls, int(box.Bot))
+            right_walls = np.append(right_walls, 'e')
+            bot_walls = np.append(bot_walls, 'e')
+
+
+        return np.array([right_walls, bot_walls])
 
     def _printMap(self) -> None:
         map_lab = self.__map_lab
