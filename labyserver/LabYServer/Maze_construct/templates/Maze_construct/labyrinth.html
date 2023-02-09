@@ -1,0 +1,23 @@
+{% extends "Maze_construct/labyrinth_template.html" %}
+{% block title %}
+Game&
+{% endblock title %}
+{% block Header %}
+    <div>
+        <p> Game! </p>
+    </div>
+{% endblock %}
+{% block content %}
+    <div>
+      {% block Setting %}
+       <div>
+           <p>Your Labyrinth here!</p>
+           <div>
+               <p>{{right_walls}}</p>
+               <p>{{bot_walls}}</p>
+           </div>
+
+       </div>
+        {% endblock %}
+    </div>
+{% endblock %}

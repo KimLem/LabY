@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+<!--    {% load static %}-->
+<!--    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"-->
+<!--          type="text/css">-->
+</head>
+<body background="aqua">
+    <div class="container">
+        <h1>{% include "main/includes/new.html"%}</h1>
+        {% block content %}
+        {% endblock %}
+        <p>
+            <a href="/labyrinth" class="btn btn-success btn-lg">Game</a>
+<!--                &raquo;-->
+        </p>
+    </div>
+</body>
+</html>
