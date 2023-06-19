@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>
@@ -9,24 +10,33 @@
     {% block Header %}
     {% endblock %}
 </head>
-<body>
- <div class="container">
-            {% block content %}
-                <div class="container">
-                    {% block setting %}
-                    {% endblock %}
-                </div>
-            {% endblock %}
-<!--            <p>-->
-<!--                <a href="/login" class="btn btn-success btn-lg">Continue</a>-->
-<!--                <a href="/login/registration" class="btn">Sign up</a>-->
-<!--                <button name="btn_sign_up">Check</button>-->
-<!--                {% if not btn_sign_up.disabled %}-->
-<!--                    {% include "main/includes/new.html"%}-->
-<!--                {% endif %}-->
 
-<!--&lt;!&ndash;                &raquo;&ndash;&gt;-->
-<!--            </p>-->
+<body>
+    <div class="container">
+        {% block content %}
+        <div class="container">
+            {% block setting %}
+            {% endblock %}
         </div>
+        {% endblock %}
+        <!--            <p>-->
+        <!--                <a href="/login" class="btn btn-success btn-lg">Continue</a>-->
+        <!--                <a href="/login/registration" class="btn">Sign up</a>-->
+        <!--                <button name="btn_sign_up">Check</button>-->
+        <!--                {% if not btn_sign_up.disabled %}-->
+        <!--                    {% include "main/includes/new.html"%}-->
+        <!--                {% endif %}-->
+
+        <!--&lt;!&ndash;                &raquo;&ndash;&gt;-->
+        <!--            </p>-->
+
+
+    </div>
+    <!-- <script type="module" src="/static/mazer.js">
+    // <script src="/static/test.js">
+
+    </script> -->
+
 </body>
+
 </html>

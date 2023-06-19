@@ -1,23 +1,40 @@
 {% extends "Maze_construct/labyrinth_template.html" %}
 {% block title %}
 Game&
+{% load static %}
 {% endblock title %}
 {% block Header %}
-    <div>
-        <p> Game! </p>
-    </div>
+<div>
+    <p> Game! </p>
+</div>
 {% endblock %}
 {% block content %}
+<div>
+    {% block Setting %}
     <div>
-      {% block Setting %}
-       <div>
-           <p>Your Labyrinth here!</p>
-           <div>
-               <p>{{right_walls}}</p>
-               <p>{{bot_walls}}</p>
-           </div>
-
-       </div>
-        {% endblock %}
+        <p>Your Labyrinth is here!</p>
+        <div>
+            <form method="get">
+                <p hidden="false">
+                    <input id="pMazer" name="fruit" value={{mazer}} />
+                </p>
+            </form>
+            <p hidden="true">{{bot_walls}}</p>
+        </div>
     </div>
+    <canvas id="canvas"></canvas>
+</div>
+<div>
+    <input type="submit" value="Submit" onclick="getRequest()">
+    <button type="button" onclick="mazerBuild()">Clazz!</button>
+</div>
+<!-- <script type="module" src="/static/mazer.js"> -->
+<script src="/static/test.js">
+
+</script>
+
+
+</div>
+{% endblock %}
+</div>
 {% endblock %}

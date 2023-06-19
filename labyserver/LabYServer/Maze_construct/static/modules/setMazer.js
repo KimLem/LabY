@@ -10,19 +10,22 @@ class LabyrinthScene {
         return Math.floor(this.height / this.rows);
     }
 
-    get hDimension() {
+    get hDimeиnsion() {
         return Math.floor(this.width / this.columns);
     }
 
-    set wallsOnScene(walls) {
-        this.walls = walls;
-    }
+    // /**
+    //  * @param {(arg0: { Type: string; X: number; Y: number; }[]) => void} walls
+    //  */
+    // set wallsOnScene(walls) {
+    //     this.walls = walls;
+    // }
 
     drawScene(walls, wallWidth) {
 
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext("2d");
-        const wallsFactory = WallsFactory();
+        const wallsFactory = new WallsFactory();
         const vDim = this.vDimension();
         const hDim = this.hDimension();
 
@@ -60,3 +63,8 @@ class WallsFactory {
         ctx.fillRect(x, y, x + width, y + vDim);
     }
 }
+export { LabyrinthScene };
+// var puk = new LabyrinthScene(5, 10, 900, 1600);
+// var walls = [{ Type: "horizontal", X: 10, Y: 20 }, { Type: "vertical", X: 20, Y: 30 }, { Type: "horizontal", X: 40, Y: 50 }];
+// puk.drawScene(walls, 10);
+// console.log(puk)

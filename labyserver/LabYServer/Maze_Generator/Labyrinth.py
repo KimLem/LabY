@@ -1,4 +1,5 @@
 from copy import copy
+import json
 
 import numpy as np
 
@@ -62,8 +63,40 @@ class Labyrinth:
             right_walls += 'e'
             bot_walls += 'e'
 
-
         return np.array([right_walls[:-1], bot_walls[:-1]])
+
+    @staticmethod
+    def _encodeLabyrinth(labyrinth) -> dict:
+
+        if isinstance(labyrinth, Labyrinth):
+
+            walls = []
+            y = 0
+            for line in labyrinth.GetMap:
+                x = 0
+                for box in line.Elements:
+                    if box.Right:
+                        walls.append({"__Wall__": True, "Type": "vertical", "X": x, "Y": y})
+                    if box.Bot:
+                        walls.append({"__Wall__": True, "Type": "horizontal", "X": x, "Y": y})
+
+                    x += 1
+                y += 1
+
+            return {"__Labyrinth__": True, "name": "",
+                    "rows": labyrinth.Rows, "columns": labyrinth.Columns, "walls": walls}
+        else:
+            type_name = labyrinth.__class__.__name__
+            raise TypeError(
+                f"Object of type '{type_name}' is not JSON serializable")
+
+    def serializeToJSON(self) -> str:
+
+        # encodedL = self._encodeLabyrinth()
+        # json_labyrinth = json.dumps(encodedL)
+        json_labyrinth = json.dumps(self, default=Labyrinth._encodeLabyrinth)
+
+        return json_labyrinth
 
     def _printMap(self) -> None:
         map_lab = self.GetMap
