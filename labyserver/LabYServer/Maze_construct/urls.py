@@ -1,8 +1,10 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
     path('', views.labyrinth, name='labyrinth'),
-    path('/json', views.getLabyrinth, name='getLabyrinth'),
+    path('getNewLabyrinth', views.getNewLabyrinth, name='getNewLabyrinth'),
+    path('setLParams', views.setLParams, name='setLParams'),
+
 
 ]

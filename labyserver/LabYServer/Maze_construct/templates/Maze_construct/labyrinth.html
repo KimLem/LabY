@@ -13,19 +13,30 @@ Game&
     {% block Setting %}
     <div>
         <p>Your Labyrinth is here!</p>
-        <div>
-            <form method="get">
-                <p hidden="false">
-                    <input id="pMazer" name="fruit" value={{mazer}} />
-                </p>
-            </form>
-            <p hidden="true">{{bot_walls}}</p>
-        </div>
     </div>
     <canvas id="canvas"></canvas>
 </div>
 <div>
-    <input type="submit" value="Submit" onclick="getRequest()">
+    <form action="" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {{ form }}
+            <legend>Labyrinth Params</legend>
+            <p>
+                <label for="labyrinthColumns">Columns:</label>
+                <input type="number" value="10" name="labyrinthColumns" id="labyrinthColumns">
+            </p>
+            <p>
+                <label for="labyrinthRows">Rows:</label>
+                <input type="number" value="10" name="labyrinthRows" id="labyrinthRows">
+            </p>
+            <input type="submit" value="Submit" onclick="setLParams()">
+        </fieldset>
+    </form>
+</div>
+
+<div>
+    <input type="submit" value="Ready!" onclick="getRequest()">
     <button type="button" onclick="mazerBuild()">Clazz!</button>
 </div>
 <!-- <script type="module" src="/static/mazer.js"> -->

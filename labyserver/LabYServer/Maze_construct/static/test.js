@@ -29,6 +29,9 @@ class LabyrinthScene {
         const vDim = this.vDimension;
         const hDim = this.hDimension;
 
+        // ctx.scale(hDim, vDim);
+
+
         walls.forEach(wall => {
             wallsFactory.adjust(wall, ctx, vDim, hDim, wallWidth);
         });
@@ -39,6 +42,12 @@ class LabyrinthScene {
 
 
 
+    }
+
+    clearScene() {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.reset();
     }
 
 }
@@ -109,21 +118,62 @@ function mazerBuild() {
 
 }
 
-function getRequest() {
+function setLabyrinth(dataLabyrinth) {
 
-    // const url = "http://127.0.0.1:8000/labyrinth/json";
-    const url = "/labyrinth/json";
-    // var request = new XMLHttpRequest();
+    let walls = dataLabyrinth.walls;
+    let rows = dataLabyrinth.rows;
+    let columns = dataLabyrinth.columns;
+    let height = 100;
+    let width = 100;
+    let wallSize = 1;
+
+    let mazerScene = new LabyrinthScene(rows, columns, height, width);
+    mazerScene.clearScene();
+    mazerScene.drawScene(walls, wallSize);
+
+
+}
+
+function getRequest2() {
+
+    const url = "/labyrinth/getNewLabyrinth";
+
 
     fetch(url, {
         method: "GET",
     })
         .then((response) => {
             return response.json();
-        })
-        .then((data) => {
-            console.log(data);
+        }).then((data) => {
+            setLabyrinth(data)
         });
 
+    console.log(url);
+
+}
+
+function setLParams() {
+
+    const url = "/labyrinth/setLParams";
+    console.log("1");
+
+    const data = { rows: document.getElementById(labyrinthRows), columns: document.getElementById(labyrinthColumns) };
+    console.log(data);
+
+    try {
+        const response = fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const json = response.json().then((data) => {
+            setLabyrinth(data)
+        });;
+        console.log('Success:', JSON.stringify(json));
+    } catch (error) {
+        console.error('Error:', error);
+    }
 
 }
